@@ -1,6 +1,6 @@
 {
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
-  "meta": { "title": "PFC Programme demo", "description": "Partnerships For Change website demo: WordPress block theme with sample projects. Resets when the tab closes." },
+  "meta": { "title": "PFC Programme demo", "author": "Partnerships For Change", "description": "Partnerships For Change website demo: WordPress block theme with sample projects. Resets when the tab closes." },
   "preferredVersions": { "php": "8.3", "wp": "latest" },
   "landingPage": "/wp-admin/site-editor.php?p=%2Fwp_template%2Fpfc-programme%2F%2Ffront-page&canvas=edit",
   "login": true,
