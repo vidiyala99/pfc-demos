@@ -6,6 +6,8 @@ export const metadata = {
   title: "Partnerships For Change | Stories that move real change",
   description:
     "Partnerships For Change is a San Francisco 501(c)(3) that brings issue-based films, books and on-the-ground projects under one roof, with fiscal sponsorship as the engine.",
+  // Demo only: keep it out of search results so it is never mistaken for PFC's real website.
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

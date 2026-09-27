@@ -11,6 +11,9 @@ test("live comparison page and Next.js demo", async ({ page }) => {
   await page.goto(LIVE + "next/");
   await expect(page.locator("h1.feature__title")).toHaveText("Himalayan Kids");
   await expect(page.locator(".showing .placeholder").first()).toContainText("from PFC needed");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  await page.goto(LIVE + "next/work/himalayan-kids/");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
 });
 
 test("live Decap editor opens with the seeded projects", async ({ page }) => {

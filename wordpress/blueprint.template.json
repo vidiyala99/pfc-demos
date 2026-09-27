@@ -32,6 +32,7 @@
       "step": "setSiteOptions",
       "options": {
         "blogname": "Partnerships For Change",
+        "blog_public": "0",
         "permalink_structure": "/%postname%/"
       }
     },
