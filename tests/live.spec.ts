@@ -29,3 +29,14 @@ test("live WordPress Playground link boots our theme and content", async ({ page
   await expect(site.locator(".season .entry")).toHaveCount(8);
   await page.screenshot({ path: "tests/shots/live-playground.png" });
 });
+
+test("live WordPress link lands in the Site Editor on the homepage template", async ({ page }) => {
+  await page.goto(LIVE);
+  const href = await page.getByRole("link", { name: "Try the WordPress editor" }).getAttribute("href");
+  await page.goto(href!);
+  const wp = page.frameLocator("#playground-viewport, iframe").first().frameLocator("iframe").first();
+  await expect(wp.getByText("You attempted to edit an item that doesn't exist")).toHaveCount(0);
+  const canvas = wp.frameLocator('iframe[name="editor-canvas"]');
+  await expect(canvas.getByRole("document", { name: "Block: Featured project" })).toBeAttached({ timeout: 200_000 });
+  await page.screenshot({ path: "tests/shots/live-site-editor.png" });
+});
