@@ -1,0 +1,13 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": { "title": "PFC Programme demo", "description": "Partnerships For Change website demo: WordPress block theme with sample projects. Resets when the tab closes." },
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "landingPage": "/wp-admin/site-editor.php?p=%2Fwp_template%2Fpfc-programme%2F%2Ffront-page&canvas=edit",
+  "login": true,
+  "steps": [
+    { "step": "installTheme", "themeData": { "resource": "git:directory", "url": "__REPO_URL__", "ref": "main", "path": "wp-theme/pfc-programme" }, "options": { "activate": true } },
+    { "step": "setSiteOptions", "options": { "blogname": "Partnerships For Change", "permalink_structure": "/%postname%/" } },
+    { "step": "importWxr", "file": { "resource": "url", "url": "__PAGES_URL__wordpress/pfc-content.xml" } },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; flush_rewrite_rules();" }
+  ]
+}

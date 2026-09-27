@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pfc/featured",
+  "title": "Featured project",
+  "category": "theme",
+  "description": "The featured screening at the top of the homepage, with Also showing beside it.",
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "default": "himalayan-kids"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

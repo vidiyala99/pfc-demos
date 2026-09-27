@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pfc/screening",
+  "title": "Project screening",
+  "category": "theme",
+  "description": "The program page for one project: still, title, credits, status, ticket, text and facts.",
+  "attributes": {},
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

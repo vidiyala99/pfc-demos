@@ -1,0 +1,23 @@
+{
+  "name": "pfc-next-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prebuild": "node scripts/prebuild.mjs",
+    "build": "next build",
+    "predev": "node scripts/prebuild.mjs",
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "next": "15.5.4",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "gray-matter": "^4.0.3",
+    "marked": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.6.0"
+  }
+}

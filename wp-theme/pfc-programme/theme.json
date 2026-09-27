@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": false,
+    "layout": { "contentSize": "720px", "wideSize": "1600px" },
+    "color": {
+      "custom": false,
+      "customGradient": false,
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "palette": [
+        { "slug": "ink", "name": "Ink", "color": "#0b1a3e" },
+        { "slug": "ink-soft", "name": "Ink soft", "color": "#3c4a68" },
+        { "slug": "ground", "name": "Ground", "color": "#f3f5f8" },
+        { "slug": "paper", "name": "Paper", "color": "#ffffff" },
+        { "slug": "link", "name": "Link", "color": "#2a4a8a" }
+      ]
+    },
+    "typography": {
+      "customFontSize": false,
+      "defaultFontSizes": false,
+      "fontFamilies": [
+        { "slug": "display", "name": "Anton (display)", "fontFamily": "\"Anton\", \"Arial Narrow\", sans-serif",
+          "fontFace": [ { "fontFamily": "Anton", "fontWeight": "400", "fontStyle": "normal", "src": [ "file:./assets/fonts/anton-400.woff2" ] } ] },
+        { "slug": "text", "name": "Barlow (text)", "fontFamily": "\"Barlow\", \"Segoe UI\", system-ui, sans-serif" }
+      ],
+      "fontSizes": [
+        { "slug": "body", "name": "Body", "size": "17px" },
+        { "slug": "lede", "name": "Lede", "size": "20px" }
+      ]
+    },
+    "spacing": { "customSpacingSize": false, "units": [ "px" ] }
+  },
+  "styles": {
+    "color": { "background": "var(--wp--preset--color--ground)", "text": "var(--wp--preset--color--ink)" },
+    "typography": { "fontFamily": "var(--wp--preset--font-family--text)", "fontSize": "var(--wp--preset--font-size--body)" }
+  },
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ]
+}

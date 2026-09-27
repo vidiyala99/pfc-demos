@@ -1,0 +1,51 @@
+backend:
+  name: test-repo
+
+site_url: __SITE_URL__
+display_url: __SITE_URL__
+media_folder: content/images
+public_folder: /images
+locale: en
+
+collections:
+  - name: settings
+    label: Homepage
+    editor: { preview: true }
+    files:
+      - name: home
+        label: Homepage settings
+        file: content/home.md
+        fields:
+          - { name: headline, label: Headline, widget: string }
+          - name: featured
+            label: Featured project
+            hint: The project shown large at the top of the homepage.
+            widget: relation
+            collection: projects
+            value_field: "{{slug}}"
+            search_fields: [title]
+            display_fields: [title]
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: content/projects
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} ({{strand}}, {{status}})"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: strand, label: Strand, widget: select, options: [Education, Health, Climate, Media] }
+      - { name: kind, label: Kind, widget: select, options: [Project, Documentary, Book, Campaign] }
+      - { name: place, label: "Place or credits line", widget: string }
+      - name: status
+        label: Status
+        widget: select
+        options: [Active, Completed, Paused, To confirm]
+        hint: Only "Active" shows as current work. Use "To confirm" until PFC has confirmed it.
+      - { name: since, label: "Active since (year)", widget: number, value_type: int, required: false }
+      - { name: image, label: Image, widget: image, required: false, hint: "Leave empty to show a labelled 'from PFC needed' placeholder." }
+      - { name: image_alt, label: "Image description (for screen readers)", widget: string, required: false }
+      - { name: show_in_also_showing, label: "Show in 'Also showing' on the homepage", widget: boolean, default: false }
+      - { name: last_reviewed, label: Last reviewed, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { name: body, label: Page text, widget: markdown }

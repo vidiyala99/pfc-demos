@@ -1,0 +1,11 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "login": true,
+  "steps": [
+    { "step": "activateTheme", "themeFolderName": "pfc-programme" },
+    { "step": "setSiteOptions", "options": { "blogname": "Partnerships For Change", "permalink_structure": "/%postname%/" } },
+    { "step": "importWxr", "file": { "resource": "vfs", "path": "/wordpress/pfc-import/pfc-content.xml" } },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; flush_rewrite_rules(); " }
+  ]
+}

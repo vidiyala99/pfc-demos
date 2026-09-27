@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>PFC demo editor (Decap)</title>
+  <link href="config.yml" type="text/yaml" rel="cms-config-url">
+  <style>
+    .pfc-demo-notice {
+      position: fixed; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 99999;
+      max-width: calc(100% - 24px); padding: 10px 16px; border-radius: 6px;
+      background: #0b1a3e; color: #fff; font: 600 14px/1.4 system-ui, sans-serif;
+      box-shadow: 0 6px 20px rgb(11 26 62 / 0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="pfc-demo-notice" role="status">Demo editor: changes show in the preview and reset on reload. On the real site, Publish updates the live page within about a minute.</div>
+  <script src="base.js"></script>
+  <script src="repo-files.js"></script>
+  <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+  <script src="preview.js"></script>
+</body>
+</html>

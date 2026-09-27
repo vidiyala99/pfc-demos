@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+dist/
+*.log
+next-demo/public/design/
+next-demo/public/images/
+next-demo/public/admin/
+_site/
+test-results/
+playwright-report/
+tests/shots/

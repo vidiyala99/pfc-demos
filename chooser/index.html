@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>PFC website: two ways to run it</title>
+<link rel="preload" href="design/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="design/pfc.css">
+<style>
+  .chooser { max-width: 1200px; margin: 0 auto; padding: var(--s7) var(--gutter) var(--s9); }
+  .chooser h1 { font-size: clamp(48px, 8vw, 112px); margin: 0; line-height: 0.95; }
+  .chooser .lede { font-size: 20px; max-width: 60ch; color: var(--ink-soft); margin: var(--s4) 0 0; }
+  .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); margin-top: var(--s7); }
+  .option { border-top: 3px solid var(--ink); padding-top: var(--s4); display: flex; flex-direction: column; gap: var(--s3); align-items: flex-start; }
+  .option h2 { margin: 0; font-size: clamp(32px, 3.4vw, 48px); line-height: 1; }
+  .option p { margin: 0; color: var(--ink-soft); max-width: 46ch; }
+  .option .button-line { font-size: 18px; }
+  .option .alt { font-weight: 600; }
+  .block { margin-top: var(--s9); }
+  .block > h2 { font-size: clamp(40px, 5vw, 72px); margin: 0 0 var(--s5); line-height: 1; }
+  details.task { border-top: 1.5px solid var(--rule); padding: var(--s4) 0; }
+  details.task:last-of-type { border-bottom: 1.5px solid var(--rule); }
+  details.task summary { cursor: pointer; font-family: var(--font-display); text-transform: uppercase; font-size: clamp(24px, 2.4vw, 34px); list-style: none; display: flex; justify-content: space-between; gap: var(--s4); }
+  details.task summary::-webkit-details-marker { display: none; }
+  details.task summary::after { content: "+"; font-family: var(--font-text); font-weight: 400; }
+  details.task[open] summary::after { content: "\2212"; }
+  .steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s6); margin-top: var(--s4); }
+  .steps h3 { font-family: var(--font-label); text-transform: uppercase; letter-spacing: 0.05em; font-size: 18px; margin: 0 0 var(--s2); }
+  .steps ol { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 16px 12px 0; border-bottom: 1.5px solid var(--rule); }
+  thead th { font-family: var(--font-label); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 3px solid var(--ink); }
+  tbody th { font-weight: 700; }
+  .scroll { overflow-x: auto; }
+  .score { display: grid; gap: var(--s4); }
+  .score fieldset { border: 0; border-top: 1.5px solid var(--rule); margin: 0; padding: var(--s4) 0 0; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s4); align-items: start; }
+  .score legend { float: left; font-weight: 700; padding: 0; }
+  .score label { display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
+  .score select, .score input { font: inherit; min-height: 44px; padding: 8px 10px; border: 1.5px solid var(--ink-soft); background: var(--paper); color: var(--ink); }
+  .copyrow { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: center; margin-top: var(--s4); }
+  .copyrow button { cursor: pointer; }
+  #copied { font-weight: 600; color: var(--climate); }
+  .know { display: grid; gap: var(--s3); max-width: 70ch; font-size: 18px; padding-left: 1.2em; }
+  @media (max-width: 760px) {
+    .pair, .steps { grid-template-columns: minmax(0, 1fr); }
+    .score fieldset { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+</head>
+<body>
+<main class="chooser" id="main">
+  <img src="images/pfc-logo.png" alt="Partnerships For Change" width="200" height="64" style="height:64px;width:auto;margin-bottom:24px" onerror="this.remove()">
+  <h1 class="display">One new website, two ways to run it</h1>
+  <p class="lede">Both demos show the same new design and the same projects. The only difference is the editor your team would use. Try the three tasks below in each, then send us your scores.</p>
+
+  <div class="pair">
+    <section class="option" aria-labelledby="opt-wp">
+      <h2 id="opt-wp" class="display">WordPress</h2>
+      <p>Edit the page itself and click Save. Familiar, and widely known by freelancers.</p>
+      <a class="button-line" id="wp-link" href="#">Try the WordPress editor</a>
+      <span class="kind">Loads a full WordPress in your browser: allow about 20 seconds</span>
+    </section>
+    <section class="option" aria-labelledby="opt-decap">
+      <h2 id="opt-decap" class="display">Next.js + Decap</h2>
+      <p>Fill in a simple form and watch a live preview beside it. Very little upkeep.</p>
+      <a class="button-line" href="next/admin/">Try the Decap editor</a>
+      <a class="alt" href="next/">See the Next.js site it publishes to</a>
+    </section>
+  </div>
+
+  <section class="block" aria-labelledby="tasks-title">
+    <h2 id="tasks-title" class="display">The three tasks</h2>
+    <details class="task">
+      <summary>1. Change the featured project on the homepage</summary>
+      <div class="steps">
+        <div><h3>WordPress</h3><ol><li>The demo opens in the Site Editor. Close the welcome guide.</li><li>Click the large featured project at the top of the page.</li><li>In the right-hand panel, open "Featured project" and choose another project.</li><li>Click Save, then Save again to confirm. Open the site to see it.</li></ol></div>
+        <div><h3>Decap</h3><ol><li>Click "Login" (no password in the demo).</li><li>Open Homepage, then Homepage settings.</li><li>Choose another project under "Featured project". The preview on the right updates.</li><li>Click Publish.</li></ol></div>
+      </div>
+    </details>
+    <details class="task">
+      <summary>2. Update Himalayan Kids: status, text and photo</summary>
+      <div class="steps">
+        <div><h3>WordPress</h3><ol><li>In the dashboard, open Projects, then Himalayan Kids.</li><li>Edit the text directly on the page.</li><li>Change Status in the right-hand panel, and set a photo under "Featured image".</li><li>Click Save.</li></ol></div>
+        <div><h3>Decap</h3><ol><li>Open Projects, then Himalayan Kids.</li><li>Change Status, the page text and the Image field. Watch the preview.</li><li>Click Publish.</li></ol></div>
+      </div>
+    </details>
+    <details class="task">
+      <summary>3. Add a new project</summary>
+      <div class="steps">
+        <div><h3>WordPress</h3><ol><li>Open Projects, then "Add new project".</li><li>Write a title and some text.</li><li>Tick a Strand, Kind and Status, and fill in "Project details".</li><li>Publish. The project appears in the season list on the homepage.</li></ol></div>
+        <div><h3>Decap</h3><ol><li>Open Projects, then "New Project".</li><li>Fill in the fields. The preview shows the new program page.</li><li>Click Publish.</li></ol></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="block" aria-labelledby="score-title">
+    <h2 id="score-title" class="display">Your scores</h2>
+    <p class="lede" style="margin-top:0">How easy was each task? 1 means very hard and 5 means very easy. Your answers stay in this browser until you copy them.</p>
+    <form class="score" id="score">
+      <fieldset><legend>Task 1: featured project</legend>
+        <label>WordPress<select name="t1-wp"><option value="">Not tried</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label>Decap<select name="t1-decap"><option value="">Not tried</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+      </fieldset>
+      <fieldset><legend>Task 2: update a project</legend>
+        <label>WordPress<select name="t2-wp"><option value="">Not tried</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label>Decap<select name="t2-decap"><option value="">Not tried</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+      </fieldset>
+      <fieldset><legend>Task 3: add a project</legend>
+        <label>WordPress<select name="t3-wp"><option value="">Not tried</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label>Decap<select name="t3-decap"><option value="">Not tried</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+      </fieldset>
+      <label style="max-width:60ch">Anything else we should know?<input name="notes" type="text" placeholder="What felt easy, what felt confusing"></label>
+      <label style="max-width:30ch">Your name<input name="name" type="text" autocomplete="name"></label>
+      <div class="copyrow"><button class="button-line" type="button" id="copy">Copy my scores</button><span id="copied" role="status" aria-live="polite"></span></div>
+      <textarea id="fallback" readonly hidden rows="8" style="width:100%;font:inherit" aria-label="Your scores as text"></textarea>
+    </form>
+  </section>
+
+  <section class="block" aria-labelledby="compare-title">
+    <h2 id="compare-title" class="display">How they compare</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th scope="col"></th><th scope="col">WordPress</th><th scope="col">Next.js + Decap</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Look and mobile</th><td>Identical</td><td>Identical</td></tr>
+          <tr><th scope="row">Editing</th><td>Edit the page itself, then Save. Live instantly.</td><td>A form with a live preview. The site updates about a minute after Publish.</td></tr>
+          <tr><th scope="row">Upkeep</th><td>WordPress and plugin updates are needed regularly for security.</td><td>Almost none. The live site is plain files.</td></tr>
+          <tr><th scope="row">Hosting cost</th><td>Needs a PHP host (PFC already pays for one).</td><td>Can be hosted at no cost.</td></tr>
+          <tr><th scope="row">Speed</th><td>Fast if kept lean.</td><td>Very fast by default.</td></tr>
+          <tr><th scope="row">Finding help later</th><td>Easy: most freelancers know WordPress.</td><td>Harder: needs a developer comfortable with this setup.</td></tr>
+          <tr><th scope="row">When something breaks</th><td>Staff can often fix it themselves.</td><td>More likely to need a developer.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="know-title">
+    <h2 id="know-title" class="display">Good to know</h2>
+    <ul class="know">
+      <li>Both demos reset. Nothing you change is saved or public, so experiment freely.</li>
+      <li>In the Decap demo, your changes show in the preview beside the form. On the real site, Publish updates the live page about a minute later.</li>
+      <li>Boxes that say "from PFC needed" are waiting for photos from your team.</li>
+      <li>Every status says "to confirm" except Himalayan Kids, until your team confirms which work is active.</li>
+    </ul>
+  </section>
+</main>
+
+<script>
+(function () {
+  var here = new URL(".", location.href);
+  document.getElementById("wp-link").href = "https://playground.wordpress.net/?blueprint-url=" + encodeURIComponent(new URL("blueprint.json", here).href);
+
+  var form = document.getElementById("score");
+  var KEY = "pfc-demo-scores";
+  function read() { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { return {}; } }
+  function write(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} }
+  var saved = read();
+  Array.prototype.forEach.call(form.elements, function (el) { if (el.name && saved[el.name] != null) el.value = saved[el.name]; });
+  form.addEventListener("input", function () {
+    var d = {};
+    Array.prototype.forEach.call(form.elements, function (el) { if (el.name) d[el.name] = el.value; });
+    write(d);
+  });
+
+  function summary() {
+    var d = read(), n = function (k) { return d[k] || "not tried"; };
+    return [
+      "PFC editor demo scores" + (d.name ? " from " + d.name : ""),
+      "Task 1, featured project: WordPress " + n("t1-wp") + ", Decap " + n("t1-decap"),
+      "Task 2, update a project: WordPress " + n("t2-wp") + ", Decap " + n("t2-decap"),
+      "Task 3, add a project: WordPress " + n("t3-wp") + ", Decap " + n("t3-decap"),
+      "Notes: " + (d.notes || "none")
+    ].join("\n");
+  }
+  document.getElementById("copy").addEventListener("click", function () {
+    var text = summary(), status = document.getElementById("copied"), box = document.getElementById("fallback");
+    function fallback() { box.hidden = false; box.value = text; box.select(); status.textContent = "Select the text below and copy it."; }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function () { status.textContent = "Copied. Paste it into an email to us."; }, fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>

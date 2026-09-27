@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pfc/season",
+  "title": "Season list",
+  "category": "theme",
+  "description": "Every project, billed together, with strand filters.",
+  "attributes": {},
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

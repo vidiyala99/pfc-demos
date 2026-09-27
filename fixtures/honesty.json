@@ -1,0 +1,26 @@
+{
+  "_about": "Shared honesty-rule fixtures. Both demos (TypeScript lib/content.ts and the PHP WordPress theme) must produce these exact outputs.",
+  "band": [
+    { "name": "active with a start year", "status": "Active", "since": 2001, "expect": { "style": "solid", "text": "Active, since 2001" } },
+    { "name": "active without a start year", "status": "Active", "expect": { "style": "solid", "text": "Active" } },
+    { "name": "completed work is archived, never presented as current", "status": "Completed", "expect": { "style": "archive", "text": "Completed" } },
+    { "name": "paused", "status": "Paused", "expect": { "style": "pending", "text": "Paused" } },
+    { "name": "unconfirmed status", "status": "To confirm", "since": 2001, "expect": { "style": "pending", "text": "Status to confirm" } }
+  ],
+  "placeholder": [
+    { "name": "documentary without a still", "kind": "Documentary", "expect": "Poster from PFC needed" },
+    { "name": "book without a cover", "kind": "Book", "expect": "Cover from PFC needed" },
+    { "name": "project without an image", "kind": "Project", "expect": "Image from PFC needed" },
+    { "name": "campaign without an image", "kind": "Campaign", "expect": "Image from PFC needed" }
+  ],
+  "invalid": [
+    { "name": "free-text status is rejected", "project": { "title": "X", "strand": "Health", "kind": "Project", "place": "Y", "status": "Current!", "last_reviewed": "2026-09-27" }, "error": "status" },
+    { "name": "unknown strand is rejected", "project": { "title": "X", "strand": "Sports", "kind": "Project", "place": "Y", "status": "Active", "last_reviewed": "2026-09-27" }, "error": "strand" },
+    { "name": "missing title is rejected", "project": { "strand": "Health", "kind": "Project", "place": "Y", "status": "Active", "last_reviewed": "2026-09-27" }, "error": "title" },
+    { "name": "image without alt text is rejected", "project": { "title": "X", "strand": "Health", "kind": "Project", "place": "Y", "status": "Active", "image": "/images/x.jpg", "last_reviewed": "2026-09-27" }, "error": "image_alt" }
+  ],
+  "featured": {
+    "broken_reference": "no-such-project",
+    "error": "featured"
+  }
+}
