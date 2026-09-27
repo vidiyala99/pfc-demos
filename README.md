@@ -1,6 +1,6 @@
 # PFC website demos
 
-Two working demos of the new Partnerships For Change website, with identical design and content, so PFC can choose the editor that suits them. Both are sandboxes: nothing is saved, and both reset on reload.
+Two working demos of the new Partnerships For Change website, with identical design and content, so PFC can choose the editor that suits them. Both are private sandboxes: nothing is public. Decap resets on reload; WordPress Playground may keep changes in the visitor's own browser.
 
 | Path | What |
 |---|---|

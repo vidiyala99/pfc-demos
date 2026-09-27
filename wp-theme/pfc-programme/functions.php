@@ -71,6 +71,6 @@ add_action( 'enqueue_block_editor_assets', function () {
 } );
 
 function pfc_demo_notice() {
-	echo '<div class="notice notice-info" style="border-left-color:#0b1a3e"><p><strong>Demo WordPress:</strong> this runs entirely in your browser and resets when you close the tab. Nothing you change here is public.</p></div>';
+	echo '<div class="notice notice-info" style="border-left-color:#0b1a3e"><p><strong>Demo WordPress:</strong> this runs entirely in your browser. Nothing you change here is public, and nothing reaches PFC&#8217;s real website.</p></div>';
 }
 add_action( 'admin_notices', 'pfc_demo_notice' );
