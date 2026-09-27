@@ -142,8 +142,8 @@ input, button { font: inherit; }
 }
 .masthead__logo img { height: 64px; width: auto; }
 .masthead__line {
-  margin: 0; font-family: var(--font-text); font-weight: 800; font-size: clamp(20px, 2.1vw, 34px);
-  letter-spacing: -0.02em; line-height: 1.05; color: var(--ink);
+  margin: 0; font-family: var(--font-text); font-weight: 800; font-size: clamp(18px, 1.75vw, 30px);
+  letter-spacing: -0.02em; line-height: 1.05; color: var(--ink); white-space: nowrap;
 }
 .nav { display: flex; gap: clamp(16px, 2vw, 34px); }
 .nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 17px; padding: 10px 0; position: relative; }
@@ -304,9 +304,11 @@ input, button { font: inherit; }
 }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1180px) {
+@media (max-width: 1320px) {
   .masthead__line { grid-row: 2; grid-column: 1 / -1; font-size: clamp(20px, 3.4vw, 28px); padding-bottom: 4px; }
   .masthead__row { grid-template-columns: auto 1fr auto; }
+}
+@media (max-width: 1180px) {
   .nav { justify-content: flex-end; }
   .programme { grid-template-columns: minmax(0, 1fr); }
   .feature { padding-right: 0; }
