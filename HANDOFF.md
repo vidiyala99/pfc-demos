@@ -39,4 +39,4 @@ PFC creates every account, with a PFC email address, two admins and two-factor l
 
 - Quarterly: review every project's status and "last reviewed" date, staff and contact details.
 - Monthly: check the donation link works and the contact inbox receives mail.
-- Design rules live in `DESIGN.md` at the project root; the shared stylesheet is `design/pfc.css`. Gold is only for Donate.
+- Design rules live in `DESIGN.md` at the project root; the shared stylesheet is `design/pfc.css`, with `design/motion.js` switching on the scroll motion and the ticket tilt (public pages only, never editors). The WordPress theme carries copies in `wp-theme/pfc-programme/assets/`; copy both files there after any change. Gold is only for Donate.

@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <link rel="preload" href={`${BASE}/design/fonts/anton-400.woff2`} as="font" type="font/woff2" crossOrigin="" />
         <link rel="stylesheet" href={`${BASE}/design/pfc.css`} />
+        <script src={`${BASE}/design/motion.js`} defer />
       </head>
       <body>
         <a className="skip" href="#main">Skip to content</a>

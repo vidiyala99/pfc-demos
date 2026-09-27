@@ -15,6 +15,8 @@ add_action( 'after_setup_theme', function () {
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'pfc', get_theme_file_uri( 'assets/pfc.css' ), array(), wp_get_theme()->get( 'Version' ) );
+	// Front end only, so the editor canvas never animates while someone is editing.
+	wp_enqueue_script( 'pfc-motion', get_theme_file_uri( 'assets/motion.js' ), array(), wp_get_theme()->get( 'Version' ), array( 'strategy' => 'defer' ) );
 } );
 
 add_action( 'init', function () {

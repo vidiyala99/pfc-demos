@@ -289,11 +289,64 @@ input, button { font: inherit; }
 .footer button:hover { background: var(--paper); color: var(--ink); }
 .footer__legal { max-width: 1600px; margin: 0 auto; padding: var(--s5) var(--gutter) var(--s6); border-top: 1px solid #2a3b63; font-size: 14px; color: #9fb0cf; }
 
-/* ---------- the one authored motion: the projector shutter opens on the feature ---------- */
+/* ---------- motion: the programme runs like a screening ----------
+   On load the projector shutter opens on the feature. On scroll the house lights come up on it,
+   ink rules draw on, the season prints row by row, and the record prints only what is verified.
+   The Donate ticket tilts toward the pointer (motion.js).
+   Everything below runs only under prefers-reduced-motion: no-preference. Scroll moments also need
+   .pfc-motion on <html> (set by motion.js on the public site, never inside an editor) and a browser
+   with scroll-driven animations; anywhere else the page is simply static. */
 @media (prefers-reduced-motion: no-preference) {
   .feature__still img { animation: shutter 900ms var(--ease-out) both; }
   .row { animation: settle 520ms var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms + 260ms); }
+
+  /* the ticket: a real stub in 3D; pressing flattens it */
+  .pfc-motion .ticket {
+    position: relative;
+    transform: perspective(520px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 420ms var(--ease-out), background-color 160ms ease;
+  }
+  .pfc-motion .ticket[data-tilt] { transition: transform 120ms var(--ease-out), background-color 160ms ease; }
+  .pfc-motion .ticket::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.34), transparent 58%);
+    transition: opacity 240ms ease;
+  }
+  .pfc-motion .ticket[data-tilt]::after { opacity: 1; }
+  .pfc-motion .ticket:active { transform: scale(0.97); transition-duration: 120ms; }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* house lights: the featured still dims and drifts inside its frame as the page moves on */
+    .pfc-motion .programme .feature__still { animation: lights auto linear both; animation-timeline: scroll(root); animation-range: 0 80vh; }
+    .pfc-motion .programme .feature__still img {
+      animation: shutter 900ms var(--ease-out) both, drift auto linear both;
+      animation-timeline: auto, scroll(root); animation-range: normal, 0 80vh;
+    }
+
+    /* ink rules draw on as each list comes into view */
+    .pfc-motion :is(.season, .record, .recent) { position: relative; border-top-color: transparent; }
+    .pfc-motion :is(.season, .record, .recent)::before {
+      content: ""; position: absolute; left: 0; right: 0; top: -3px; height: 3px; background: var(--ink);
+      transform-origin: left; animation: rule-draw auto var(--ease-out) both;
+      animation-timeline: view(); animation-range: entry 20% cover 30%;
+    }
+    .pfc-motion .section__head > div { animation: lift auto var(--ease-out) both; animation-timeline: view(); animation-range: entry 10% cover 25%; }
+
+    /* the season prints: each row wipes on as it reaches the page (opacity is left to the filter) */
+    .pfc-motion .entry,
+    .pfc-motion .recent li { animation: print auto var(--ease-out) both; animation-timeline: view(); animation-range: entry 0% cover 22%; }
+
+    /* the record: verified figures print solid; unverified ones only ever draw as outlines */
+    .pfc-motion .figure__n:not(.figure__n--ghost) { animation: print-up auto var(--ease-out) both; animation-timeline: view(); animation-range: entry 30% cover 35%; }
+    .pfc-motion .figure__n--ghost { animation: outline-in auto ease both; animation-timeline: view(); animation-range: entry 30% cover 40%; }
+
+    /* submissions: what PFC provides is billed item by item */
+    .pfc-motion .offer li { animation: lift auto var(--ease-out) both; animation-timeline: view(); animation-range: entry 0% cover 20%; }
+  }
+}
+
 @keyframes shutter {
   from { clip-path: inset(9% 0 9% 0); transform: scale(1.05); filter: brightness(0.9); }
   to { clip-path: inset(0 0 0 0); transform: scale(1); filter: none; }
@@ -302,6 +355,19 @@ input, button { font: inherit; }
   from { transform: translateY(10px); filter: blur(2px); }
   to { transform: none; filter: none; }
 }
+@keyframes lights { to { filter: brightness(0.62) saturate(0.8); } }
+@keyframes drift { from { scale: 1.06; translate: 0 -1.5%; } to { scale: 1.06; translate: 0 2.5%; } }
+@keyframes rule-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes lift { from { opacity: 0; translate: 0 24px; } to { opacity: 1; translate: 0 0; } }
+@keyframes print {
+  from { clip-path: inset(-8px 100% -8px -8px); translate: -14px 0; }
+  to { clip-path: inset(-8px -8px -8px -8px); translate: 0 0; }
+}
+@keyframes print-up {
+  from { clip-path: inset(100% -8px -8px -8px); translate: 0 18px; }
+  to { clip-path: inset(-8px -8px -8px -8px); translate: 0 0; }
+}
+@keyframes outline-in { from { -webkit-text-stroke-color: transparent; } to { -webkit-text-stroke-color: var(--ink-soft); } }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1320px) {
